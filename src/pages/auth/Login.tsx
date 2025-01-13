@@ -73,6 +73,8 @@ export default function Login() {
           </div>
         </form>
       </Form>
+      <p className="self-center my-2">________ or ________</p>
+      <Button className="mt-2">Login with google</Button>
       <p className="mt-4 self-center text-sm">
         Not registered yet?
         <Link

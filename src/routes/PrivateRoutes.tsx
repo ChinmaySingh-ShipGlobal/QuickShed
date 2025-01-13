@@ -1,0 +1,10 @@
+import Register from "@/pages/auth/Register";
+import { Outlet } from "react-router-dom";
+
+export default function PrivateRoutes() {
+  return {
+    path: "/",
+    element: <Outlet />,
+    children: [{ path: "", element: <Register /> }],
+  };
+}

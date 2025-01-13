@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { profileSchema } from "@/schemas/Profile";
+import { useState } from "react";
 
 export default function Profile() {
   const form = useForm<z.infer<typeof profileSchema>>({
@@ -30,6 +31,7 @@ export default function Profile() {
     console.log(values);
   }
 
+  const [edit, setEdit] = useState(false);
   return (
     <DashboardLayout>
       <div className="flex justify-center items-center flex-col">
@@ -55,7 +57,7 @@ export default function Profile() {
                       className="mt-0 bg-white h-14"
                       placeholder="Enter your name here . . ."
                       {...field}
-                      disabled
+                      disabled={!edit}
                     />
                   </FormControl>
                   <FormMessage />
@@ -73,7 +75,7 @@ export default function Profile() {
                       className="mt-0 bg-white h-14"
                       placeholder="Enter your email here . . ."
                       {...field}
-                      disabled
+                      disabled={!edit}
                     />
                   </FormControl>
                   <FormMessage />
@@ -91,7 +93,7 @@ export default function Profile() {
                       className="mt-0 bg-white h-14"
                       placeholder="Enter your password here . . ."
                       {...field}
-                      disabled
+                      disabled={!edit}
                     />
                   </FormControl>
                   <FormMessage />
@@ -100,6 +102,13 @@ export default function Profile() {
             />
           </form>
         </Form>
+        <div className="flex items-end justify-end w-full max-w-lg mt-4">
+          {edit ? (
+            <Button onClick={() => setEdit(false)}>Save</Button>
+          ) : (
+            <Button onClick={() => setEdit(true)}>Edit</Button>
+          )}
+        </div>
       </div>
     </DashboardLayout>
   );

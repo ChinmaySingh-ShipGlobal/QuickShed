@@ -22,8 +22,8 @@ export default function DashboardLayout({ children }: { children: any }) {
             <MobileMenu />
           ) : (
             <>
-              <Link to="#">Home</Link>
-              <Link to="#">Profile</Link>
+              <Link to="/dashboard">Home</Link>
+              <Link to="/profile">Profile</Link>
             </>
           )}
         </div>

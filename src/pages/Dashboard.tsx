@@ -25,6 +25,77 @@ export default function Dashboard() {
           </CardHeader>
         </Card>
       </div>
+      <Component />
     </DashboardLayout>
+  );
+}
+
+("use client");
+
+import { Label, Pie, PieChart } from "recharts";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
+const total = 100000;
+const income = 58678;
+const chartData = [
+  { browser: "balance", visitors: income, fill: "#009990" },
+  { browser: "", visitors: total - income, fill: "#EFF3EA" },
+];
+
+const chartConfig = {
+  visitors: {
+    label: "expense",
+  },
+} satisfies ChartConfig;
+
+export function Component() {
+  return (
+    <ChartContainer
+      config={chartConfig}
+      className="mx-auto aspect-square max-h-[250px]"
+    >
+      <PieChart>
+        <ChartTooltip
+          cursor={false}
+          content={<ChartTooltipContent hideLabel />}
+        />
+        <Pie
+          data={chartData}
+          dataKey="visitors"
+          nameKey="browser"
+          innerRadius={60}
+          stroke="#d3d3d3"
+          strokeWidth={1}
+        >
+          <Label
+            content={({ viewBox }) => {
+              if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                return (
+                  <text
+                    x={viewBox.cx}
+                    y={viewBox.cy}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                  >
+                    Safe to spend
+                    <tspan
+                      x={viewBox.cx}
+                      y={(viewBox.cy || 0) + 24}
+                      className="text-black font-semibold"
+                    >
+                      Rs. {income}
+                    </tspan>
+                  </text>
+                );
+              }
+            }}
+          />
+        </Pie>
+      </PieChart>
+    </ChartContainer>
   );
 }

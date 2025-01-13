@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { HandCoins } from "lucide-react";
+import { Outlet } from "react-router-dom";
 
 export default function Auth({
   children,
@@ -23,12 +24,13 @@ export default function Auth({
             <p className="mt-2 font-normal text-lg">Welcome to</p>
             <p className="text-4xl font-semibold">QuickShed</p>
           </CardTitle>
-          <CardDescription className="w-2/3">
+          <CardDescription className="w-5/6">
             A place where you can track all your expenses and incomes . . .
-            <p className="mt-2 text-black">Let's Get Started . . .</p>
           </CardDescription>
         </CardHeader>
-        <CardContent className={`mt-8 ${className}`}>{...children}</CardContent>
+        <CardContent className={`${className}`}>
+          {children ? children : <Outlet />}
+        </CardContent>
       </Card>
     </div>
   );

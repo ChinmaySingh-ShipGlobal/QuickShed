@@ -1,6 +1,6 @@
 import { useIsMobile } from "@/lib/utils";
 import { HandCoins, House, Logs, UserRound } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import {
   Popover,
   PopoverContent,
@@ -28,7 +28,9 @@ export default function DashboardLayout({ children }: { children: any }) {
           )}
         </div>
       </div>
-      <div className="mt-14 bg-gray-100 h-screen">{...children}</div>
+      <div className="mt-14 bg-gray-100 h-screen p-4">
+        {children ? children : <Outlet />}
+      </div>
     </div>
   );
 }

@@ -7,7 +7,13 @@ import {
 } from "@/components/ui/card";
 import { HandCoins } from "lucide-react";
 
-export default function Auth({ children }: { children: any }) {
+export default function Auth({
+  children,
+  className,
+}: {
+  children: any;
+  className?: string;
+}) {
   return (
     <div className="flex justify-center items-center h-screen">
       <Card className="w-full md:max-w-sm my-auto m-4">
@@ -22,7 +28,7 @@ export default function Auth({ children }: { children: any }) {
             <p className="mt-2 text-black">Let's Get Started . . .</p>
           </CardDescription>
         </CardHeader>
-        <CardContent className="mt-8">{...children}</CardContent>
+        <CardContent className={`mt-8 ${className}`}>{...children}</CardContent>
       </Card>
     </div>
   );

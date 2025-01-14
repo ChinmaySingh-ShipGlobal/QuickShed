@@ -6,7 +6,7 @@ import {
   Logs,
   UserRound,
 } from "lucide-react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import {
   Popover,
   PopoverContent,
@@ -16,10 +16,14 @@ import { useState } from "react";
 
 export default function DashboardLayout({ children }: { children: any }) {
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
   return (
     <div>
       <div className="w-full fixed top-0 left-0 flex z-50 justify-between h-14 bg-white px-8">
-        <div className="flex gap-x-2 items-center">
+        <div
+          className="flex gap-x-2 items-center cursor-pointer"
+          onClick={() => navigate("/dashboard")}
+        >
           <HandCoins className="h-7 w-7" />
           <p className="text-lg font-bold my-auto">QuickShed</p>
         </div>

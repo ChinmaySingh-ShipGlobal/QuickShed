@@ -1,3 +1,4 @@
+import AllTransactions from "@/pages/AllTransactions";
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
 import Dashboard from "@/pages/Dashboard";
@@ -13,6 +14,7 @@ export default function PrivateRoutes() {
       { path: "/login", element: <Login /> },
       { path: "/profile", element: <Profile /> },
       { path: "/dashboard", element: <Dashboard /> },
+      { path: "/all-transactions", element: <AllTransactions /> },
     ],
   };
 }

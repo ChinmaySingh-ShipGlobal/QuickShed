@@ -1,5 +1,11 @@
 import { useIsMobile } from "@/lib/utils";
-import { HandCoins, House, Logs, UserRound } from "lucide-react";
+import {
+  ArrowLeftRight,
+  HandCoins,
+  House,
+  Logs,
+  UserRound,
+} from "lucide-react";
 import { Link, Outlet } from "react-router-dom";
 import {
   Popover,
@@ -24,11 +30,12 @@ export default function DashboardLayout({ children }: { children: any }) {
             <>
               <Link to="/dashboard">Home</Link>
               <Link to="/profile">Profile</Link>
+              <Link to="/all-transactions">Transactions</Link>
             </>
           )}
         </div>
       </div>
-      <div className="mt-14 bg-gray-100 min-h-screen h-full p-4">
+      <div className="pt-14 bg-gray-100 min-h-screen h-full p-4">
         {children ? children : <Outlet />}
       </div>
     </div>
@@ -46,11 +53,15 @@ const MobileMenu = () => {
         <PopoverContent className="grid gap-y-1 w-32 mr-1 mt-2 p-0 shadow-none">
           <div className="flex items-center gap-x-2 px-2 bg-gray-50 p-2">
             <House className="w-4 h-4 mt-0.5" />
-            <Link to="#">Home</Link>
+            <Link to="/dashboard">Home</Link>
           </div>
           <div className="flex items-center gap-x-2 px-2 bg-gray-50 p-2">
             <UserRound className="w-4 h-4 mt-0.5" />
-            <Link to="#">Profile</Link>
+            <Link to="/profile">Profile</Link>
+          </div>
+          <div className="flex items-center gap-x-2 px-2 bg-gray-50 p-2">
+            <ArrowLeftRight className="w-4 h-4 mt-0.5 rotate-90" />
+            <Link to="/all-transactions">Transactions</Link>
           </div>
         </PopoverContent>
       </Popover>

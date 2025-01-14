@@ -2,12 +2,7 @@ import DashboardLayout from "@/layouts/Dashboard";
 import { Card, CardHeader } from "@/components/ui/card";
 import { ArrowDown, ArrowUp, IndianRupee } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 
 const total = 67356;
 const income = 58678;
@@ -146,7 +141,7 @@ const RecentTransactions = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {Transactions.map((transaction) => {
+        {Transactions.slice(0, 2).map((transaction) => {
           return (
             <div className="flex justify-between my-3">
               <div className="flex items-center gap-x-4">
@@ -172,7 +167,67 @@ const RecentTransactions = () => {
   );
 };
 
-const Transactions = [
+export const Transactions = [
+  {
+    title: "ATM Withdrawal",
+    amount: "500",
+    bank: "ICICI Bank xxxxxxxx0000",
+    type: "expense",
+  },
+  {
+    title: "Online Transfer",
+    amount: "3020",
+    bank: "ICICI Bank xxxxxxxx0000",
+    type: "income",
+  },
+  {
+    title: "Grocery Shopping",
+    amount: "1500",
+    bank: "HDFC Bank xxxxxxxx0000",
+    type: "expense",
+  },
+  {
+    title: "Salary Credit",
+    amount: "45000",
+    bank: "Axis Bank xxxxxxxx0000",
+    type: "income",
+  },
+  {
+    title: "Electricity Bill Payment",
+    amount: "2200",
+    bank: "SBI Bank xxxxxxxx0000",
+    type: "expense",
+  },
+  {
+    title: "ATM Withdrawal",
+    amount: "500",
+    bank: "ICICI Bank xxxxxxxx0000",
+    type: "expense",
+  },
+  {
+    title: "Online Transfer",
+    amount: "3020",
+    bank: "ICICI Bank xxxxxxxx0000",
+    type: "income",
+  },
+  {
+    title: "Grocery Shopping",
+    amount: "1500",
+    bank: "HDFC Bank xxxxxxxx0000",
+    type: "expense",
+  },
+  {
+    title: "Salary Credit",
+    amount: "45000",
+    bank: "Axis Bank xxxxxxxx0000",
+    type: "income",
+  },
+  {
+    title: "Electricity Bill Payment",
+    amount: "2200",
+    bank: "SBI Bank xxxxxxxx0000",
+    type: "expense",
+  },
   {
     title: "ATM Withdrawal",
     amount: "500",

@@ -1,8 +1,21 @@
 import DashboardLayout from "@/layouts/Dashboard";
 import { Card, CardHeader } from "@/components/ui/card";
 import { ArrowDown, ArrowUp } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+const total = 67356;
+const income = 58678;
 
 export default function Dashboard() {
+  const incomeChartData = [
+    { browser: "balance", visitors: income, fill: "#009990" },
+    { browser: "", visitors: total - income, fill: "#EFF3EA" },
+  ];
+  const expenseChartData = [
+    { browser: "expense", visitors: total - income, fill: "#8F1616" },
+    { browser: "", visitors: income, fill: "#EFF3EA" },
+  ];
+
   return (
     <DashboardLayout>
       <div className="flex justify-center items-center flex-col">
@@ -24,8 +37,26 @@ export default function Dashboard() {
             </div>
           </CardHeader>
         </Card>
+
+        <Tabs defaultValue="income" className="w-[400px]">
+          <TabsContent value="income">
+            <AmountPieChart chartData={incomeChartData} amount={income} />
+          </TabsContent>
+          <TabsContent value="expense">
+            {" "}
+            <AmountPieChart
+              chartData={expenseChartData}
+              amount={total - income}
+            />
+          </TabsContent>
+          <div className="flex justify-center items-center">
+            <TabsList>
+              <TabsTrigger value="income">Income</TabsTrigger>
+              <TabsTrigger value="expense">Expense</TabsTrigger>
+            </TabsList>
+          </div>
+        </Tabs>
       </div>
-      <Component />
     </DashboardLayout>
   );
 }
@@ -39,12 +70,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-const total = 100000;
-const income = 58678;
-const chartData = [
-  { browser: "balance", visitors: income, fill: "#009990" },
-  { browser: "", visitors: total - income, fill: "#EFF3EA" },
-];
 
 const chartConfig = {
   visitors: {
@@ -52,7 +77,13 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function Component() {
+export function AmountPieChart({
+  chartData,
+  amount,
+}: {
+  chartData: any;
+  amount: string | number;
+}) {
   return (
     <ChartContainer
       config={chartConfig}
@@ -67,9 +98,8 @@ export function Component() {
           data={chartData}
           dataKey="visitors"
           nameKey="browser"
+          outerRadius={80}
           innerRadius={60}
-          stroke="#d3d3d3"
-          strokeWidth={1}
         >
           <Label
             content={({ viewBox }) => {
@@ -81,13 +111,12 @@ export function Component() {
                     textAnchor="middle"
                     dominantBaseline="middle"
                   >
-                    Safe to spend
                     <tspan
                       x={viewBox.cx}
-                      y={(viewBox.cy || 0) + 24}
+                      y={viewBox.cy || 0}
                       className="text-black font-semibold"
                     >
-                      Rs. {income}
+                      Rs. {amount}
                     </tspan>
                   </text>
                 );

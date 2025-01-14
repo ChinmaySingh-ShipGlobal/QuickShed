@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: { children: any }) {
   const isMobile = useIsMobile();
   return (
     <div>
-      <div className="w-full fixed top-0 left-0 flex justify-between h-14 bg-white px-8">
+      <div className="w-full fixed top-0 left-0 flex z-50 justify-between h-14 bg-white px-8">
         <div className="flex gap-x-2 items-center">
           <HandCoins className="h-7 w-7" />
           <p className="text-lg font-bold my-auto">QuickShed</p>
@@ -28,7 +28,7 @@ export default function DashboardLayout({ children }: { children: any }) {
           )}
         </div>
       </div>
-      <div className="mt-14 bg-gray-100 h-screen p-4">
+      <div className="mt-14 bg-gray-100 min-h-screen h-full p-4">
         {children ? children : <Outlet />}
       </div>
     </div>

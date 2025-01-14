@@ -1,7 +1,13 @@
 import DashboardLayout from "@/layouts/Dashboard";
 import { Card, CardHeader } from "@/components/ui/card";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown, ArrowUp, IndianRupee } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardTitle,
+} from "@/components/ui/card";
 
 const total = 67356;
 const income = 58678;
@@ -43,7 +49,6 @@ export default function Dashboard() {
             <AmountPieChart chartData={incomeChartData} amount={income} />
           </TabsContent>
           <TabsContent value="expense">
-            {" "}
             <AmountPieChart
               chartData={expenseChartData}
               amount={total - income}
@@ -56,6 +61,7 @@ export default function Dashboard() {
             </TabsList>
           </div>
         </Tabs>
+        <RecentTransactions />
       </div>
     </DashboardLayout>
   );
@@ -128,3 +134,73 @@ export function AmountPieChart({
     </ChartContainer>
   );
 }
+
+const RecentTransactions = () => {
+  const today = new Date();
+  return (
+    <Card className="max-w-lg w-full mt-8 shadow-none">
+      <CardHeader className="space-y-0">
+        <CardTitle className="text-lg font-bold">Recent Transactions</CardTitle>
+        <CardDescription className="text-xs pt-1">
+          Updated on {today.toDateString()}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        {Transactions.map((transaction) => {
+          return (
+            <div className="flex justify-between my-3">
+              <div className="flex items-center gap-x-4">
+                {transaction.type === "income" ? (
+                  <ArrowUp className="text-white bg-teal-600 p-1 h-8 w-8 rounded-lg" />
+                ) : (
+                  <ArrowDown className="text-white bg-orange-500 p-1 h-8 w-8 rounded-lg" />
+                )}
+                <div className="flex flex-col">
+                  <p className="text-base font-medium">{transaction.title}</p>
+                  <p className="text-gray-500 text-sm">{transaction.bank}</p>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <IndianRupee className="font-bold h-4 w-4" />
+                <p className="font-bold">{transaction.amount}</p>
+              </div>
+            </div>
+          );
+        })}
+      </CardContent>
+    </Card>
+  );
+};
+
+const Transactions = [
+  {
+    title: "ATM Withdrawal",
+    amount: "500",
+    bank: "ICICI Bank xxxxxxxx0000",
+    type: "expense",
+  },
+  {
+    title: "Online Transfer",
+    amount: "3020",
+    bank: "ICICI Bank xxxxxxxx0000",
+    type: "income",
+  },
+  {
+    title: "Grocery Shopping",
+    amount: "1500",
+    bank: "HDFC Bank xxxxxxxx0000",
+    type: "expense",
+  },
+  {
+    title: "Salary Credit",
+    amount: "45000",
+    bank: "Axis Bank xxxxxxxx0000",
+    type: "income",
+  },
+  {
+    title: "Electricity Bill Payment",
+    amount: "2200",
+    bank: "SBI Bank xxxxxxxx0000",
+    type: "expense",
+  },
+];

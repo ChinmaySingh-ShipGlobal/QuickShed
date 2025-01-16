@@ -3,6 +3,7 @@ import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
 import Dashboard from "@/pages/Dashboard";
 import Profile from "@/pages/Profile";
+import SpendArea from "@/pages/SpendArea";
 import { Outlet } from "react-router-dom";
 
 export default function PrivateRoutes() {
@@ -14,6 +15,7 @@ export default function PrivateRoutes() {
       { path: "/login", element: <Login /> },
       { path: "/profile", element: <Profile /> },
       { path: "/dashboard", element: <Dashboard /> },
+      { path: "/spend-area", element: <SpendArea /> },
       { path: "/all-transactions", element: <AllTransactions /> },
     ],
   };

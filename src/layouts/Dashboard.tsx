@@ -19,15 +19,15 @@ export default function DashboardLayout({ children }: { children: any }) {
   const navigate = useNavigate();
   return (
     <div>
-      <div className="w-full fixed top-0 left-0 flex z-50 justify-between h-14 bg-white px-8">
+      <div className="fixed top-0 left-0 z-50 flex justify-between w-full px-8 bg-white h-14">
         <div
-          className="flex gap-x-2 items-center cursor-pointer"
+          className="flex items-center cursor-pointer gap-x-2"
           onClick={() => navigate("/dashboard")}
         >
           <HandCoins className="h-7 w-7" />
-          <p className="text-lg font-bold my-auto">QuickShed</p>
+          <p className="my-auto text-lg font-bold">QuickShed</p>
         </div>
-        <div className="py-4 gap-x-6 flex">
+        <div className="flex py-4 gap-x-6">
           {isMobile ? (
             <MobileMenu />
           ) : (
@@ -35,11 +35,12 @@ export default function DashboardLayout({ children }: { children: any }) {
               <Link to="/dashboard">Home</Link>
               <Link to="/profile">Profile</Link>
               <Link to="/all-transactions">Transactions</Link>
+              <Link to="/spend-area">Expenditure</Link>
             </>
           )}
         </div>
       </div>
-      <div className="pt-14 bg-gray-100 min-h-screen h-full p-4">
+      <div className="h-full min-h-screen p-4 bg-gray-100 pt-14">
         {children ? children : <Outlet />}
       </div>
     </div>
@@ -54,18 +55,22 @@ const MobileMenu = () => {
         <PopoverTrigger>
           <Logs className="h-7 w-7" />
         </PopoverTrigger>
-        <PopoverContent className="grid gap-y-1 w-32 mr-1 mt-2 p-0 shadow-none">
-          <div className="flex items-center gap-x-2 px-2 bg-gray-50 p-2">
+        <PopoverContent className="grid w-32 p-0 mt-2 mr-1 shadow-none gap-y-1">
+          <div className="flex items-center p-2 px-2 gap-x-2 bg-gray-50">
             <House className="w-4 h-4 mt-0.5" />
             <Link to="/dashboard">Home</Link>
           </div>
-          <div className="flex items-center gap-x-2 px-2 bg-gray-50 p-2">
+          <div className="flex items-center p-2 px-2 gap-x-2 bg-gray-50">
             <UserRound className="w-4 h-4 mt-0.5" />
             <Link to="/profile">Profile</Link>
           </div>
-          <div className="flex items-center gap-x-2 px-2 bg-gray-50 p-2">
+          <div className="flex items-center p-2 px-2 gap-x-2 bg-gray-50">
             <ArrowLeftRight className="w-4 h-4 mt-0.5 rotate-90" />
             <Link to="/all-transactions">Transactions</Link>
+          </div>
+          <div className="flex items-center p-2 px-2 gap-x-2 bg-gray-50">
+            <ArrowLeftRight className="w-4 h-4 mt-0.5 rotate-90" />
+            <Link to="/spend-area">Expenditure</Link>
           </div>
         </PopoverContent>
       </Popover>

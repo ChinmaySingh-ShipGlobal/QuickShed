@@ -1,6 +1,7 @@
 import { useIsMobile } from "@/lib/utils";
 import {
   ArrowLeftRight,
+  DollarSign,
   HandCoins,
   House,
   Logs,
@@ -36,6 +37,7 @@ export default function DashboardLayout({ children }: { children: any }) {
               <Link to="/profile">Profile</Link>
               <Link to="/all-transactions">Transactions</Link>
               <Link to="/spend-area">Expenditure</Link>
+              <Link to="/add-transaction">Add</Link>
             </>
           )}
         </div>
@@ -71,6 +73,10 @@ const MobileMenu = () => {
           <div className="flex items-center p-2 px-2 gap-x-2 bg-gray-50">
             <ArrowLeftRight className="w-4 h-4 mt-0.5 rotate-90" />
             <Link to="/spend-area">Expenditure</Link>
+          </div>
+          <div className="flex items-center p-2 px-2 gap-x-2 bg-gray-50">
+            <DollarSign className="w-4 h-4 mt-0.5" />
+            <Link to="/add-transaction">Add</Link>
           </div>
         </PopoverContent>
       </Popover>
